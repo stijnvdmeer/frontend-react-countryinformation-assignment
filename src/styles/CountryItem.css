@@ -17,3 +17,25 @@ li {
     border-radius: 20px;
 }
 
+.title-red {
+    color: red;
+}
+.title-lightgreen {
+    color: lightgreen;
+}
+.title-darkgreen {
+    color: darkgreen;
+}
+.title-blue {
+    color: blue;
+}
+.title-purple {
+    color: purple;
+}
+.title-yellow {
+    color: yellow;
+}
+.title-white {
+    color: navajowhite;
+}
+
