@@ -43,7 +43,12 @@ function App() {
                 {
                     countries.map(country => {
                         // eslint-disable-next-line react/jsx-key
-                      return <CountryItem imgSrc={country.flags.png} countryName={country.name.common} population={country.population} />
+                      return <CountryItem
+                          imgSrc={country.flags.png}
+                          countryName={country.name.common}
+                          population={country.population}
+                          continent={country.continents[0]}
+                      />
                     })
                 }
             </ul>
