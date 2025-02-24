@@ -1,10 +1,13 @@
-import './App.css';
+import './styles/App.css';
+import WorldMap from './assets/world_map.png';
+
+import axios from 'axios';
 
 function App() {
 
     return (
         <>
-            Maak je applicatie hier!
+            <img id="map" src={WorldMap} alt="World Map" />
         </>
     )
 }
