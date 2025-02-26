@@ -1,0 +1,19 @@
+#map {
+    width: 50vw;
+    height: 50vh;
+}
+ul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+span {
+    border: 1px solid darkred;
+    background-color: red;
+    color: white;
+    border-radius: 10px;
+    padding: 5px;
+}
