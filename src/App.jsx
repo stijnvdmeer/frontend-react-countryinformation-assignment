@@ -14,15 +14,27 @@ import CountryPanel from "./components/CountryPanel.jsx";
 function App() {
     const [countries, setcountries] = useState([]);
     const [searchInput, setSearchInput] = useState('nederland');
+    const [error, setError] = useState(null);
 
     const fetchData = async () => {
         try {
             // const result = await axios.get('https://restcountries.com/v3.1/all', {});
             const result = await axios.get(`https://restcountries.com/v3.1/name/${searchInput}`);
+            setError(false)
+            checkInput(result.data);
 
-            setcountries(result.data);
         } catch(err) {
+            setError(true);
             console.error(err);
+        }
+    }
+    // the input requires atleast 2 characters or else throws error
+    const checkInput = (input) => {
+        if(searchInput.length <= 2) {
+            setError(true);
+        } else {
+            setError(false);
+            setcountries(input);
         }
     }
 
@@ -48,10 +60,6 @@ function App() {
             </nav>
 
             <img id="map" src={WorldMap} alt="World Map"/>
-            <form>
-                <input type="text" id="searchBar" placeholder="Search by name..." onChange={(e) => setSearchInput(e.target.value)} />
-                <input type="submit" value="Search" onClick={() => fetchData()} />
-            </form>
             {/* Code for assignment one */}
             {/*<ul>*/}
             {/*    {*/}
@@ -67,10 +75,19 @@ function App() {
             {/*</ul>*/}
 
             {/* Code for assignment two */}
+            <form>
+                <input type="text" id="searchBar" placeholder="Search by name..."
+                       onChange={(e) => setSearchInput(e.target.value)}/>
+                <input type="submit" value="Search" onClick={(e) => {
+                    e.preventDefault();
+                    return fetchData();
+                }}/>
+            </form>
+            { error ? <span>{searchInput} bestaat niet, zoek een ander land op</span> : null}
             {
                 countries.map((country, index) => {
                     // eslint-disable-next-line react/jsx-key
-                    return <CountryPanel data={country} key={index} />
+                    return <CountryPanel data={country} key={index}/>
                 })
             }
         </>
